@@ -20,7 +20,7 @@ export default function Head() {
       const headerKeys = Object.keys(obj).filter((key) => key !== 'residents');
 
       return headerKeys.map((key, index) => (
-        <StyledTableCell align={index > 0 ? 'right' : 'left'}>{key}</StyledTableCell>
+        <StyledTableCell key={key} align={index > 0 ? 'right' : 'left'}>{key}</StyledTableCell>
       ));
     }
   }

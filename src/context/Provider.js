@@ -6,8 +6,15 @@ import Context from './SWContext';
 const Provider = ({ children }) => {
   const [data, setData] = useState([]);
 
+  const [filters, setFilters] = useState({
+    filterByName: { name: '' },
+  });
+
   const context = {
-    data, setData
+    data,
+    setData,
+    filters,
+    setFilters,
   };
 
   return <Context.Provider value={context}>{children}</Context.Provider>;

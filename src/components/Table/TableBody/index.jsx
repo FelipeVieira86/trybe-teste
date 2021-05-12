@@ -38,11 +38,15 @@ const useStyles = makeStyles({
 });
 
 export default function Body() {
-  const { data } = useContext(SWContext);
   const classes = useStyles();
+  
+  const { data, filters: { filterByName: { name } } } = useContext(SWContext);
+
+  const filteredData = data.filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()))
+
   return (
     <TableBody>
-      {data.map((planet) => (
+      {filteredData.map((planet) => (
         <StyledTableRow key={planet.name}>
           <StyledTableCell>{planet.name}</StyledTableCell>
           <StyledTableCell align="right">{planet.rotation_period}</StyledTableCell>
@@ -55,7 +59,7 @@ export default function Body() {
           <StyledTableCell align="right">{planet.population}</StyledTableCell>
           <StyledTableCell align="right" className={classes.films}>
             {planet.films.map((film) => (
-              <p className={classes.film}>{Films[film]}</p>
+              <p key={film} className={classes.film}>{Films[film]}</p>
             ))}
           </StyledTableCell>
           <StyledTableCell align="right">{planet.created}</StyledTableCell>
