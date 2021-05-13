@@ -19,6 +19,9 @@ const Provider = ({ children }) => {
       ...filters,
       filterByNumericValues: [...filters.filterByNumericValues, { column, comparison, value }],
     });
+    setColumnFilter('');
+    setComparisonFilter('');
+    setValueFilter('');
   };
 
   const [columns] = useState([

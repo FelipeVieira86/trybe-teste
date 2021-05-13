@@ -14,6 +14,22 @@ const Films = {
   'https://swapi-trybe.herokuapp.com/api/films/6/': 'Revenge of the Sith',
 };
 
+const filterPlanet = (planetList = [], filter) => {
+  const { column, comparison, value } = filter;
+  return planetList.filter((planet) => {
+    switch (comparison) {
+      case 'maior que':
+        return Number(planet[column]) > Number(value);
+      case 'igual a':
+        return Number(planet[column]) === Number(value);
+      case 'menor que':
+        return Number(planet[column]) < Number(value);
+      default:
+        return planet;
+    }
+  });
+};
+
 const StyledTableCell = withStyles(() => ({
   body: {
     fontSize: 12,
@@ -44,11 +60,17 @@ export default function Body() {
     data,
     filters: {
       filterByName: { name },
+      filterByNumericValues,
     },
   } = useContext(SWContext);
 
-  const filteredData = data
-    .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
+  let filteredData = data
+    .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  filterByNumericValues.forEach((filter) => {
+    filteredData = filterPlanet(filteredData, filter);
+  });
 
   return (
     <TableBody>
@@ -72,7 +94,11 @@ export default function Body() {
           </StyledTableCell>
           <StyledTableCell align="right">{planet.created}</StyledTableCell>
           <StyledTableCell align="right">{planet.edited}</StyledTableCell>
-          <StyledTableCell align="right">{planet.url}</StyledTableCell>
+          <StyledTableCell align="right">
+            <a href={planet.url} target="_blank" rel="noreferrer">
+              {planet.url}
+            </a>
+          </StyledTableCell>
         </StyledTableRow>
       ))}
     </TableBody>

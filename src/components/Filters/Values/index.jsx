@@ -14,12 +14,13 @@ const useStyles = makeStyles({
 
 export default function Values() {
   const classes = useStyles();
-  const { setValueFilter } = useContext(SWContext);
+  const { valueFilter, setValueFilter } = useContext(SWContext);
 
   return (
     <TextField
       className={classes.box}
       label="Valor"
+      value={valueFilter}
       onChange={({ target }) => setValueFilter(target.value)}
     />
   );
