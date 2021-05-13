@@ -5,6 +5,7 @@ import Filters from './components/Filters';
 import Table from './components/Table';
 
 import Provider from './context/Provider';
+import ActiveFilters from './components/ActiveFilters';
 
 const useStyles = makeStyles({
   box: {
@@ -19,6 +20,7 @@ function App() {
     <Provider>
       <div className={classes.box}>
         <Filters />
+        <ActiveFilters />
         <Table />
       </div>
     </Provider>

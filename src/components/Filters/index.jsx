@@ -9,9 +9,10 @@ import FilterButton from './FilterButton';
 
 const useStyles = makeStyles({
   filters: {
-    display: 'flex',
-    padding: 10,
     boxSizing: 'border-box',
+    display: 'flex',
+    justifyContent: 'center',
+    padding: 10,
   },
 });
 

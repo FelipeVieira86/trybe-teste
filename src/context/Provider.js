@@ -24,6 +24,15 @@ const Provider = ({ children }) => {
     setValueFilter('');
   };
 
+  const removeNumericFilter = (removedFilter) => {
+    setFilters({
+      ...filters,
+      filterByNumericValues: filters.filterByNumericValues.filter(
+        (filter) => filter.column !== removedFilter,
+      ),
+    });
+  };
+
   const [columns] = useState([
     'population',
     'orbital_period',
@@ -45,6 +54,7 @@ const Provider = ({ children }) => {
     valueFilter,
     setValueFilter,
     addNewFilter,
+    removeNumericFilter,
   };
 
   return <Context.Provider value={context}>{children}</Context.Provider>;
