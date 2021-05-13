@@ -8,10 +8,13 @@ const Provider = ({ children }) => {
   const [columnFilter, setColumnFilter] = useState('');
   const [comparisonFilter, setComparisonFilter] = useState('');
   const [valueFilter, setValueFilter] = useState('');
+  const [columnValue, setColumnValue] = useState('name');
+  const [sortValue, setSortValue] = useState('ASC');
 
   const [filters, setFilters] = useState({
     filterByName: { name: '' },
     filterByNumericValues: [],
+    order: { columnValue: 'name', sortValue: 'ASC' },
   });
 
   const addNewFilter = (column, comparison, value) => {
@@ -33,12 +36,16 @@ const Provider = ({ children }) => {
     });
   };
 
+  const setSort = () => {
+    setFilters({ ...filters, order: { columnValue, sortValue } });
+  };
+
   const [columns] = useState([
-    'population',
+    'rotation_period',
     'orbital_period',
     'diameter',
-    'rotation_period',
     'surface_water',
+    'population',
   ]);
 
   const context = {
@@ -55,6 +62,11 @@ const Provider = ({ children }) => {
     setValueFilter,
     addNewFilter,
     removeNumericFilter,
+    columnValue,
+    setColumnValue,
+    sortValue,
+    setSortValue,
+    setSort,
   };
 
   return <Context.Provider value={context}>{children}</Context.Provider>;

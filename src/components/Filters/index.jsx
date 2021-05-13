@@ -6,13 +6,14 @@ import ColumnFilter from './Columns';
 import ComparisonFilter from './Comparison';
 import ValueFilter from './Values';
 import FilterButton from './FilterButton';
+import Sorting from './Sorting';
 
 const useStyles = makeStyles({
   filters: {
     boxSizing: 'border-box',
     display: 'flex',
     justifyContent: 'center',
-    padding: 10,
+    alignItems: 'center',
   },
 });
 
@@ -29,6 +30,8 @@ export default function Filters() {
       <ValueFilter />
 
       <FilterButton />
+
+      <Sorting />
     </div>
   );
 }

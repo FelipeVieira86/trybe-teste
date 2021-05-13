@@ -9,8 +9,8 @@ const useStyles = makeStyles({
   btn: {
     width: 100,
     height: 30,
-    alignSelf: 'flex-end',
-    marginLeft: 18,
+    alignSelf: 'center',
+    margin: 10,
   },
 });
 

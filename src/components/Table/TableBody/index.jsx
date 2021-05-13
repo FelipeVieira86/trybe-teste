@@ -55,14 +55,24 @@ const useStyles = makeStyles({
 
 export default function Body() {
   const classes = useStyles();
-
   const {
     data,
     filters: {
       filterByName: { name },
       filterByNumericValues,
+      order: { columnValue, sortValue },
     },
   } = useContext(SWContext);
+
+  const sortByName = (planets) => {
+    if (sortValue === 'ASC') return planets.sort((a, b) => a.name.localeCompare(b.name));
+    return planets.sort((a, b) => b.name.localeCompare(a.name));
+  };
+
+  const sortByValue = (planets) => {
+    if (sortValue === 'ASC') return planets.sort((a, b) => Number(a[columnValue]) - Number(b[columnValue]));
+    return planets.sort((a, b) => Number(b[columnValue]) - Number(a[columnValue]));
+  };
 
   let filteredData = data
     .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()))
@@ -71,6 +81,12 @@ export default function Body() {
   filterByNumericValues.forEach((filter) => {
     filteredData = filterPlanet(filteredData, filter);
   });
+
+  if (columnValue === 'name') {
+    filteredData = sortByName(filteredData);
+  } else {
+    filteredData = sortByValue(filteredData);
+  }
 
   return (
     <TableBody>
