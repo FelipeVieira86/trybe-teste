@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { Table as TableBox, TableContainer, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,6 +34,7 @@ export default function Table() {
     <TableContainer component={Paper}>
       <TableBox className={classes.table}>
         <TableHead />
+
         <TableBody />
       </TableBox>
     </TableContainer>

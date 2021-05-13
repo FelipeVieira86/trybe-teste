@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { TableBody, TableCell, TableRow } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -34,15 +34,21 @@ const useStyles = makeStyles({
   },
   film: {
     margin: 0,
-  }
+  },
 });
 
 export default function Body() {
   const classes = useStyles();
-  
-  const { data, filters: { filterByName: { name } } } = useContext(SWContext);
 
-  const filteredData = data.filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()))
+  const {
+    data,
+    filters: {
+      filterByName: { name },
+    },
+  } = useContext(SWContext);
+
+  const filteredData = data
+    .filter((planet) => planet.name.toLowerCase().includes(name.toLowerCase()));
 
   return (
     <TableBody>
@@ -59,7 +65,9 @@ export default function Body() {
           <StyledTableCell align="right">{planet.population}</StyledTableCell>
           <StyledTableCell align="right" className={classes.films}>
             {planet.films.map((film) => (
-              <p key={film} className={classes.film}>{Films[film]}</p>
+              <p key={film} className={classes.film}>
+                {Films[film]}
+              </p>
             ))}
           </StyledTableCell>
           <StyledTableCell align="right">{planet.created}</StyledTableCell>

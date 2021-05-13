@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 import { TableCell, TableHead, TableRow } from '@material-ui/core';
@@ -23,6 +23,7 @@ export default function Head() {
         <StyledTableCell key={key} align={index > 0 ? 'right' : 'left'}>{key}</StyledTableCell>
       ));
     }
+    return [];
   }
 
   return (
